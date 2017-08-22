@@ -1,3 +1,8 @@
+export class FilterBeers
+{
+    page: number;
+}
+
 export class Beer
 {
     id: string;
@@ -5,3 +10,4 @@ export class Beer
     statusDisplay: string;
     isOrganic: string;
 }
+
