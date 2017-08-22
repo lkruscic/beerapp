@@ -1,3 +1,27 @@
-<p>
-  beer works!
-</p>
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+      Breewery db beer list
+    </div>
+    <div class='panel-body'>
+        <div class='table-responsive'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Organic</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let beer of beers'>
+                      <td>{{ beer.id }}</td>
+                      <td>{{ beer.nameDisplay }}</td>
+                      <td>{{ beer.statusDisplay }}</td>
+                      <td>{{ beer.isOrganic }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
