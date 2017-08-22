@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Beer } from "./beer.model";
 
 @Component({
   selector: 'app-beer',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./beer.component.css']
 })
 export class BeerComponent implements OnInit {
+
+  beers: Array<Beer>;
 
   constructor() { }
 
