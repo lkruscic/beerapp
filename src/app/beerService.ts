@@ -14,8 +14,15 @@ export class BeerService
 
     getBeersFor(filter:FilterBeers): Observable<Beer[]>
     {
+        let params: URLSearchParams = new URLSearchParams();
+        params.set('p', filter.page.toString());
+
         let beers = this.http
-            .get(`${this.baseUrl}/Beers`, {headers: this.getHeaders()})
+            .get(`${this.baseUrl}/Beers`,
+                {
+                    headers: this.getHeaders(),
+                    search: params
+                })
             .map(this.mapBeers);
         return beers;
     }
