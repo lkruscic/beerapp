@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Beer } from "./beer.model";
 
 @Component({
@@ -8,9 +8,7 @@ import { Beer } from "./beer.model";
 })
 export class BeerComponent implements OnInit {
 
-  beers: Array<Beer>;
-
-  constructor() { }
+  @Input() beer: Beer;
 
   ngOnInit() {
   }
