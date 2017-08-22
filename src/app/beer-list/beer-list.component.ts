@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Beer } from "app/beer/beer.model";
+import { BeerService } from "app/beerService";
 
 @Component({
   selector: 'app-beer-list',
@@ -8,11 +9,14 @@ import { Beer } from "app/beer/beer.model";
 })
 export class BeerListComponent implements OnInit {
 
-  beers: Array<Beer>;
+  beers: Beer[] = [];
 
-  constructor() { }
+  constructor(private beerService: BeerService) { 
+  }
 
   ngOnInit() {
+    this.beerService.getBeersFor({page: 1})
+    .subscribe(beers => this.beers = beers);
   }
 
 }

@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { BeerComponent } from './beer/beer.component';
 import { BeerListComponent } from './beer-list/beer-list.component';
+import { BeerService } from "app/beerService";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { BeerListComponent } from './beer-list/beer-list.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [BeerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

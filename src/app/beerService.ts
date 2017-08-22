@@ -7,7 +7,7 @@ import { FilterBeers, Beer } from "./beer/beer.model"
 @Injectable()
 export class BeerService
 {
-    private baseUrl: string = "http://api.brewerydb.com/v2/";
+    private baseUrl: string = "http://api.brewerydb.com/v2";
     private key: string = "0cbfb61c14a8d5676cec7f0d48acac63";
     constructor(private http: Http)
     {}
@@ -15,10 +15,11 @@ export class BeerService
     getBeersFor(filter:FilterBeers): Observable<Beer[]>
     {
         let params: URLSearchParams = new URLSearchParams();
+        params.set('key', this.key);
         params.set('p', filter.page.toString());
 
         let beers = this.http
-            .get(`${this.baseUrl}/Beers`,
+            .get(`${this.baseUrl}/beers`,
                 {
                     headers: this.getHeaders(),
                     search: params
