@@ -19,7 +19,7 @@ export class BeerService
         params.set('p', filter.page.toString());
 
         let beers = this.http
-            .get(`${this.baseUrl}/beers`,
+            .get(`${this.baseUrl}/beers?key=0cbfb61c14a8d5676cec7f0d48acac63`,
                 {
                     headers: this.getHeaders(),
                     search: params
@@ -37,18 +37,18 @@ export class BeerService
 
     private mapBeers(response:Response): Beer[]
     {
-        return response.json().results.map(this.toBeer)
+        return response.json().data.map(toBeer)
     }
+}
 
-    private toBeer(r:any): Beer
-    {
-        let beer = <Beer>({
-            id: r.id,
-            isOrganic: r.isOrganic,
-            nameDisplay: r.nameDisplay,
-            statusDisplay: r.statusDisplay,
-        });
-        return beer;
-    }
+function toBeer(r:any): Beer
+{
+    let beer = <Beer>({
+        id: r.id,
+        isOrganic: r.isOrganic,
+        nameDisplay: r.nameDisplay,
+        statusDisplay: r.statusDisplay,
+    });
+    return beer;
 }
 
