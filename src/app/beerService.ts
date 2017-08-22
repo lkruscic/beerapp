@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { FilterBeers, Beer } from "./beer/beer.model"
+import { FilterBeers, Beer, BeerPage } from "./beer/beer.model"
 
 @Injectable()
 export class BeerService
@@ -12,17 +12,12 @@ export class BeerService
     constructor(private http: Http)
     {}
 
-    getBeersFor(filter:FilterBeers): Observable<Beer[]>
+    getBeersFor(filter:FilterBeers): Observable<BeerPage>
     {
-        let params: URLSearchParams = new URLSearchParams();
-        params.set('key', this.key);
-        params.set('p', filter.page.toString());
-
         let beers = this.http
-            .get(`${this.baseUrl}/beers?key=0cbfb61c14a8d5676cec7f0d48acac63`,
+            .get(`${this.baseUrl}/beers?key=${this.key}&p=${filter.page}`,
                 {
                     headers: this.getHeaders(),
-                    search: params
                 })
             .map(this.mapBeers);
         return beers;
@@ -31,13 +26,19 @@ export class BeerService
     private getHeaders()
     {
         let headers = new Headers();
-        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
         return headers;
     }
 
-    private mapBeers(response:Response): Beer[]
+    private mapBeers(response:Response): BeerPage
     {
-        return response.json().data.map(toBeer)
+        let result = response.json();
+        return {
+            currentPage: result.currentPage,
+            numberOfPages: result.numberOfPages,
+            totalResults: result.totalResults,
+            beers: result.data.map(toBeer)
+        };
     }
 }
 

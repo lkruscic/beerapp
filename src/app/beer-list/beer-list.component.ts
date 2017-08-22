@@ -16,7 +16,7 @@ export class BeerListComponent implements OnInit {
 
   ngOnInit() {
     this.beerService.getBeersFor({page: 1})
-    .subscribe(beers => this.beers = beers);
+    .subscribe(beerPage => this.beers = beerPage.beers);
   }
 
 }

@@ -11,3 +11,11 @@ export class Beer
     isOrganic: string;
 }
 
+export class BeerPage
+{
+    currentPage: number;
+    numberOfPages: number
+    totalResults: number;
+    beers: Beer[];
+}
+
