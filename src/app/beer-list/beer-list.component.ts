@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Beer } from "app/beer/beer.model";
+import { Beer, FilterBeers } from "app/beer/beer.model";
 import { BeerService } from "app/beerService";
 
 @Component({
@@ -9,14 +9,25 @@ import { BeerService } from "app/beerService";
 })
 export class BeerListComponent implements OnInit {
 
+  // input:
+  beerName: string;
+  styleId: string;
+
+  // output:
   beers: Beer[] = [];
+  
 
   constructor(private beerService: BeerService) { 
   }
 
   ngOnInit() {
-    this.beerService.getBeersFor({page: 1})
+    this.beerService.getBeersFor(new FilterBeers(1, null, null))
     .subscribe(beerPage => this.beers = beerPage.beers);
+  }
+
+  searchBeers() {
+    this.beerService.getBeersFor(new FilterBeers(1, this.beerName, this.styleId))
+      .subscribe(beerPage => this.beers = beerPage.beers);
   }
 
 }

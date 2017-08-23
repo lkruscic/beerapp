@@ -15,7 +15,7 @@ export class BeerService
     getBeersFor(filter:FilterBeers): Observable<BeerPage>
     {
         let beers = this.http
-            .get(`${this.baseUrl}/beers?key=${this.key}&p=${filter.page}`,
+            .get(`${this.baseUrl}/beers?key=${this.key}&${filter.getParamsAsUrl()}`,
                 {
                     headers: this.getHeaders(),
                 })
@@ -37,7 +37,7 @@ export class BeerService
             currentPage: result.currentPage,
             numberOfPages: result.numberOfPages,
             totalResults: result.totalResults,
-            beers: result.data.map(toBeer)
+            beers: result.data != null ? result.data.map(toBeer) : undefined
         };
     }
 }

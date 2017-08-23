@@ -1,6 +1,17 @@
 export class FilterBeers
 {
-    page: number;
+    constructor(
+        private page: number,
+        private name?: string,
+        private styleId?: string){}
+
+    public getParamsAsUrl() : string
+    {
+        let params = `p=${this.page.toString()}`;
+        if (this.name != null) params += `&name=${this.name.toString()}`;
+        if (this.styleId != null) params += `&styleId=${this.styleId.toString()}`;
+        return params;
+    }
 }
 
 export class Beer

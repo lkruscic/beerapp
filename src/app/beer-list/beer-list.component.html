@@ -2,6 +2,13 @@
     <div class='panel-heading'>
       Beer list
     </div>
+    <div class="form-group">
+        <label for="beerName">Beer name:</label>
+        <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName">
+        <label for="styleId">Style id:</label>
+        <input type="text" class="form-control" id="styleId" [(ngModel)]="styleId">
+        <button type="button" class="btn btn-default" (click)="searchBeers()">Search</button>
+    </div>
     <div class='panel-body'>
         <div class='container'>
             <div class="row panel panel-info">
