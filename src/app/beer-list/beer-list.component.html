@@ -5,11 +5,11 @@
     <div class="form-group">
         <div class="col-sm-3">
             <label for="beerName">Beer name:</label>
-            <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName">
+            <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName" placeholder="e.g. Enter *Pale Ale* to filter all beers with 'Pale Ale' text">
         </div> 
         <div class="col-sm-3">
             <label for="styleId">Style id:</label>
-            <input type="number" class="form-control" id="styleId" [(ngModel)]="styleId">
+            <input type="number" class="form-control" id="styleId" [(ngModel)]="styleId" placeholder="Enter exact beer style ID">
         </div>
         <div class="col-sm-2">
             <div class="row top25"></div>
@@ -17,9 +17,9 @@
         </div>
         <div class="col-sm-4">
             <ul class="pager">
-                <button type="button" (click)="pageDown()">Previous</button>
+                <button type="button" class="btn" (click)="pageDown()">Previous</button>
                 <label>Page <input type="number" min="1" minlength="1" id="currentPage" [(ngModel)]="beerPage.currentPage" (keyup.enter)="searchBeers(beerPage.currentPage)"> of {{beerPage.numberOfPages}}</label>
-                <button type="button" (click)="pageUp()">Next</button>
+                <button type="button" class="btn" (click)="pageUp()">Next</button>
             </ul>
         </div>
     </div>

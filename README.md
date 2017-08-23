@@ -1,5 +1,9 @@
 # Beerapp
 
+To be able to use the project you need first to dowload node.js: https://nodejs.org/en/download/
+After that install ng-cli (angular 2 env) using npm (installed with node): npm install -g ng-cli
+You are now able to start server (see steps below).
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
