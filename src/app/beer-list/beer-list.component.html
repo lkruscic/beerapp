@@ -3,22 +3,32 @@
       Beer list
     </div>
     <div class="form-group">
-        <label for="beerName">Beer name:</label>
-        <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName">
-        <label for="styleId">Style id:</label>
-        <input type="text" class="form-control" id="styleId" [(ngModel)]="styleId">
-        <button type="button" class="btn btn-default" (click)="searchBeers(1)">Search</button>
+        <div class="col-sm-3">
+            <label for="beerName">Beer name:</label>
+            <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName">
+        </div> 
+        <div class="col-sm-3">
+            <label for="styleId">Style id:</label>
+            <input type="text" class="form-control" id="styleId" [(ngModel)]="styleId">
+        </div>
+        <div class="col-sm-2">
+            <div class="row top25"></div>
+            <button type="button" class="btn btn-default btn-block" (click)="searchBeers(1)">Search</button>
+        </div>
+        <div class="col-sm-4">
+            <ul class="pager">
+                <button type="button" (click)="pageDown()">Previous</button>
+                <label>Page {{beerPage.currentPage}} of {{beerPage.numberOfPages}}</label>
+                <button type="button" (click)="pageUp()">Next</button>
+            </ul>
+        </div>
     </div>
-    <ul class="pager">
-        <button (click)="pageDown()">Previous</button>
-        <label>Page {{beerPage.currentPage}} of {{beerPage.numberOfPages}}</label>
-        <button (click)="pageUp()">Next</button>
-    </ul>
-    <div class='panel-body'>
+    <label class="col-sm-12 text-center">{{beerPage.totalResults}} beers loaded</label>
+    <div class='panel-body col-sm-12'>
         <div class='container'>
             <div class="row panel panel-info">
-                <div class='col-md-3'>Beer ID</div>
-                <div class='col-md-4'>Name</div>
+                <div class='col-md-1'>Beer ID</div>
+                <div class='col-md-6'>Name</div>
                 <div class='col-md-3'>Status</div>
                 <div class='col-md-1'>Style ID</div>
                 <div class='col-md-1'>Organic</div>
