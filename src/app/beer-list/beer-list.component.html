@@ -7,8 +7,13 @@
         <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName">
         <label for="styleId">Style id:</label>
         <input type="text" class="form-control" id="styleId" [(ngModel)]="styleId">
-        <button type="button" class="btn btn-default" (click)="searchBeers()">Search</button>
+        <button type="button" class="btn btn-default" (click)="searchBeers(1)">Search</button>
     </div>
+    <ul class="pager">
+        <button (click)="pageDown()">Previous</button>
+        <label>Page {{beerPage.currentPage}} of {{beerPage.numberOfPages}}</label>
+        <button (click)="pageUp()">Next</button>
+    </ul>
     <div class='panel-body'>
         <div class='container'>
             <div class="row panel panel-info">
@@ -18,7 +23,7 @@
                 <div class='col-md-3'>Organic</div>
             </div>
                 
-            <div class='row' *ngFor='let beer of beers'>
+            <div class='row' *ngFor='let beer of beerPage.beers'>
                 <app-beer [beer]='beer'></app-beer>
             </div>
         </div>
