@@ -14,7 +14,7 @@ export class BeerListComponent implements OnInit {
   styleId: string;
 
   // output:
-  beerPage: BeerPage;
+  beerPage: BeerPage = BeerPage.CreateUndefined();
   
 
   constructor(private beerService: BeerService) { 
@@ -34,17 +34,13 @@ export class BeerListComponent implements OnInit {
   }
 
   pageUp() {
-    let page = this.beerPage.currentPage < this.beerPage.numberOfPages ?
-                this.beerPage.currentPage + 1 :
-                this.beerPage.numberOfPages;
-    this.searchBeers(page);
+    let nextPage = this.beerPage.getNextPageNumber();
+    this.searchBeers(nextPage);
   }
 
   pageDown () {
-    let page = this.beerPage.currentPage > 1 ?
-                this.beerPage.currentPage - 1 :
-                1;
-    this.searchBeers(page);
+    let previousPage = this.beerPage.getPreviousPageNumber();
+    this.searchBeers(previousPage);
   }
 
 }

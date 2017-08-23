@@ -33,12 +33,11 @@ export class BeerService
     private mapBeers(response:Response): BeerPage
     {
         let result = response.json();
-        return {
-            currentPage: result.currentPage,
-            numberOfPages: result.numberOfPages,
-            totalResults: result.totalResults,
-            beers: result.data != null ? result.data.map(toBeer) : undefined
-        };
+        return new BeerPage(
+            result.currentPage,
+            result.numberOfPages,
+            result.totalResults,
+            result.data != null ? result.data.map(toBeer) : undefined);
     }
 }
 
