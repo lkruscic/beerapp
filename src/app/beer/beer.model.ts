@@ -19,6 +19,7 @@ export class Beer
     id: string;
     nameDisplay: string;
     statusDisplay: string;
+    styleId: number;
     isOrganic: string;
 }
 

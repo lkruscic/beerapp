@@ -46,9 +46,10 @@ function toBeer(r:any): Beer
 {
     let beer = <Beer>({
         id: r.id,
-        isOrganic: r.isOrganic,
         nameDisplay: r.nameDisplay,
         statusDisplay: r.statusDisplay,
+        styleId: r.styleId,
+        isOrganic: r.isOrganic,
     });
     return beer;
 }
