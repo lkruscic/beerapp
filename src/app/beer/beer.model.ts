@@ -1,13 +1,13 @@
 export class FilterBeers
 {
     constructor(
-        private page: number,
+        private page: number|undefined,
         private name?: string,
         private styleId?: string){}
 
     public getParamsAsUrl() : string
     {
-        let params = `p=${this.page.toString()}`;
+        let params = `p=${this.page != undefined ? this.page.toString() : 1}`;
         if (this.name != null) params += `&name=${this.name.toString()}`;
         if (this.styleId != null) params += `&styleId=${this.styleId.toString()}`;
         return params;

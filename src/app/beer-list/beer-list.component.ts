@@ -25,7 +25,7 @@ export class BeerListComponent implements OnInit {
     .subscribe(beerPage => this.beerPage = beerPage);
   }
 
-  searchBeers(page: number) {
+  searchBeers(page: number|undefined) {
     this.beerService.getBeersFor(new FilterBeers(page, this.beerName, this.styleId))
       .subscribe(beerPage =>
         {
@@ -42,5 +42,4 @@ export class BeerListComponent implements OnInit {
     let previousPage = this.beerPage.getPreviousPageNumber();
     this.searchBeers(previousPage);
   }
-
 }
