@@ -1,41 +1,53 @@
-<div class='panel panel-default'>
-    <div class='panel-heading'>
-      Beer list
-    </div>
-    <div class="form-group">
-        <div class="col-sm-3">
-            <label for="beerName">Beer name:</label>
-            <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName" placeholder="e.g. Enter *Pale Ale* to filter all beers with 'Pale Ale' text">
-        </div> 
-        <div class="col-sm-3">
-            <label for="styleId">Style id:</label>
-            <input type="number" class="form-control" id="styleId" [(ngModel)]="styleId" placeholder="Enter exact beer style ID">
-        </div>
-        <div class="col-sm-2">
-            <div class="row top25"></div>
-            <button type="button" class="btn btn-default btn-block" (click)="searchBeers(1)">Search</button>
-        </div>
-        <div class="col-sm-4">
-            <ul class="pager">
-                <button type="button" class="btn" (click)="pageDown()">Previous</button>
-                <label>Page <input type="number" min="1" minlength="1" id="currentPage" [(ngModel)]="beerPage.currentPage" (keyup.enter)="searchBeers(beerPage.currentPage)"> of {{beerPage.numberOfPages}}</label>
-                <button type="button" class="btn" (click)="pageUp()">Next</button>
-            </ul>
-        </div>
-    </div>
-    <label class="col-sm-12 text-center">{{beerPage.totalResults}} beers loaded</label>
-    <div class='panel-body col-sm-12'>
-        <div class='container'>
-            <div class="row panel panel-info">
-                <div class='col-md-1'>Beer ID</div>
-                <div class='col-md-6'>Name</div>
-                <div class='col-md-3'>Status</div>
-                <div class='col-md-1'>Style ID</div>
-                <div class='col-md-1'>Organic</div>
+<div class="container-fluid">
+    <span class='text-center'><h2>Beer list</h2></span>
+    <div class='row'>
+        <div class='panel-body col-md-8 col-xs-6'>
+            <div class='container'>
+                <div class="row panel panel-info">
+                    <div style="text-align:center;" class='col-md-1 '>Beer ID</div>
+                    <div style="text-align:center;" class='col-md-6'>Name</div>
+                    <div class='col-md-3'>Status</div>
+                    <div class='col-md-1'>Style ID</div>
+                    <div class='col-md-1'>Organic</div>
+                </div>
+
+                <div class='row' *ngFor='let beer of beerPage.beers'>
+                    <app-beer [beer]='beer'></app-beer>
+                </div>
             </div>
-                
-            <div class='row' *ngFor='let beer of beerPage.beers'>
-                <app-beer [beer]='beer'></app-beer>
+        </div>
+        <div class='col-md-4 col-xs-6'>
+            <div class='form-group'>
+                <div class='row'>
+                    <div class="col-md-6">
+                        <label for="beerName">Beer name:</label>
+                        <input type="text" class="form-control" id="beerName" [(ngModel)]="beerName" placeholder="e.g. Enter *Pale Ale* to filter all beers with 'Pale Ale' text">
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-6">
+                        <label for="styleId">Style id:</label>
+                        <input type="number" class="form-control" id="styleId" [(ngModel)]="styleId" placeholder="Enter exact beer style ID">
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-6">
+                        <div class="row top25"></div>
+                        <button type="button" class="btn btn-primary btn-block" (click)="searchBeers(1)">Search</button>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-6">
+                        <ul class="pager">
+                            <button type="button" class="btn btn-primary" (click)="pageDown()">Previous</button>
+                            <label>Page <input type="number" min="1" minlength="1" id="currentPage" [(ngModel)]="beerPage.currentPage" (keyup.enter)="searchBeers(beerPage.currentPage)"> of {{beerPage.numberOfPages}}</label>
+                            <button type="button" class="btn btn-primary" (click)="pageUp()">Next</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <label class="col-md-6 text-center">{{beerPage.totalResults}} beers loaded</label>
             </div>
         </div>
     </div>
